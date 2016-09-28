@@ -7,8 +7,10 @@ var db;
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(express.static('public'));
 
 
 MongoClient
@@ -45,4 +47,22 @@ app.post('/quotes', (req, res) => {
       res.redirect('/');
     }
   })
+})
+
+app.put('/quotes', (req, res) => {
+  console.log("coucou" + req);
+  db.collections('quotes').findOneAndUpdate(
+    {name: 'Yoda'},
+    {$set: {name: req.body.name, quote: req.body.quote}},
+    {sort: {_id:-1}, upsert: true},
+    (err, result) => {
+      if (err) return res.send(err);
+      res.send(result);
+    })
+})
+
+
+app.delete('/quotes', (req, res) => {
+  // Handle delete event here
+  console.log("deteting" + req);
 })

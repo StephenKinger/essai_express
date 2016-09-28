@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>MY APP</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 <body>
   May Node and Express be with you.
@@ -19,7 +20,14 @@
   <form action="/quotes" method="POST">
     <input type="text" placeholder="name" name="name">
     <input type="text" placeholder="quote" name="quote">
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-info">Submit</button>
   </form>
+  <div>
+    <h2>Replace last quote written by Master Yoda with a quote written by Darth
+      Vador</h2>
+    <button id="update" class="btn btn-warning"> Update </button>
+    <button id="delete" class="btn btn-danger"> Delete </button>
+  </div>
+  <script src="main.js"></script>
 </body>
 </html>
